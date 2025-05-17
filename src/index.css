@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@layer base {
+  :root {
+    --background: 240 20% 10%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 17% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 17% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 285 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 10% 20%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 120 100% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 25 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 20% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 240 20% 10%;
+    --sidebar-accent: 240 10% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 240 15% 25%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .dark {
+    --background: 240 20% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 17% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 17% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 45%;
+    --primary-foreground: 240 20% 4%;
+
+    --secondary: 285 100% 45%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 120 100% 45%;
+    --accent-foreground: 240 20% 4%;
+
+    --destructive: 25 100% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 180 100% 45%;
+
+    --sidebar-background: 240 20% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 45%;
+    --sidebar-primary-foreground: 240 20% 4%;
+    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 240 15% 20%;
+    --sidebar-ring: 180 100% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.05) 2px, transparent 0),
+      radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.05) 2px, transparent 0);
+    background-size: 100px 100px;
+    font-family: 'Exo 2', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .tech-panel {
+    @apply relative bg-card rounded-md overflow-hidden border border-neon-cyan/30 shadow-lg;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  }
+  
+  .tech-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, theme('colors.neon.cyan'), transparent);
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+  }
+  
+  .neon-border {
+    position: relative;
+  }
+  
+  .neon-border::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid theme('colors.neon.cyan');
+    border-radius: inherit;
+    box-shadow: 0 0 10px theme('colors.neon.cyan');
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .neon-border:hover::after {
+    opacity: 1;
+  }
+  
+  .console-text {
+    font-family: 'Share Tech Mono', monospace;
+  }
+  
+  .metal-texture {
+    background-image: linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.1) 25%, 
+      transparent 25%, 
+      transparent 50%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      rgba(255, 255, 255, 0.1) 75%, 
+      transparent 75%, 
+      transparent);
+    background-size: 4px 4px;
+  }
+  
+  .gear {
+    filter: drop-shadow(0 0 2px theme('colors.neon.cyan'));
+  }
+  
+  /* Custom cursor */
+  .custom-cursor {
+    pointer-events: none;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: screen;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 3D effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
